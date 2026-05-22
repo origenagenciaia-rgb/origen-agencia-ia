@@ -611,6 +611,14 @@
     .hero-scroll-hint{display:none}
   }
 </style>
+<!-- Google Analytics — reemplazar G-XXXXXXXXXX con tu Measurement ID -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-XXXXXXXXXX');
+</script>
 </head>
 <body>
 
@@ -1173,7 +1181,9 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" novalidate>
+      <form class="contact-form reveal" id="contactForm" name="contacto" data-netlify="true" novalidate>
+        <input type="hidden" name="form-name" value="contacto" />
+        <input type="hidden" name="plan" id="cf-plan" value="Raíz" />
         <div class="field-row">
           <div class="field">
             <label for="cf-nombre">Nombre</label>
@@ -1198,7 +1208,11 @@
           <textarea id="cf-msg" name="mensaje" placeholder="Sobre tu marca, lo que necesitás, plazos, referencias…"></textarea>
         </div>
         <div>
-          <button type="submit" class="btn" style="width:100%;justify-content:center">Enviar por WhatsApp <span class="arrow">→</span></button>
+          <button type="submit" class="btn" id="cf-submit" style="width:100%;justify-content:center">Enviar por WhatsApp <span class="arrow">→</span></button>
+        </div>
+        <div id="cf-success" style="display:none;padding:20px;background:rgba(46,139,87,.1);border:1px solid var(--leaf);border-radius:2px;text-align:center">
+          <p style="font-family:var(--serif);font-size:20px;color:var(--leaf);margin-bottom:8px">¡Mensaje enviado!</p>
+          <p style="font-size:14px;color:var(--ink-soft)">Te abrimos WhatsApp para seguir la conversación. Si no se abrió, escribinos al <a href="https://wa.me/541161436720" target="_blank" rel="noopener" style="color:var(--leaf)">+54 11 6143-6720</a>.</p>
         </div>
       </form>
     </div>
@@ -1260,21 +1274,51 @@
     ch.addEventListener('click', () => {
       document.querySelectorAll('#chips .chip').forEach(x => x.classList.remove('on'));
       ch.classList.add('on');
+      document.getElementById('cf-plan').value = ch.dataset.v;
     });
   });
 
-  // ── Contact form → WhatsApp ──
-  document.getElementById('contactForm').addEventListener('submit', e => {
+  // ── Contact form → Netlify + WhatsApp ──
+  document.getElementById('contactForm').addEventListener('submit', async e => {
     e.preventDefault();
     const nombre = document.getElementById('cf-nombre').value.trim();
     const tel    = document.getElementById('cf-telefono').value.trim();
     const plan   = document.querySelector('#chips .chip.on')?.dataset.v || 'Sin definir';
     const msg    = document.getElementById('cf-msg').value.trim();
-    if (!nombre || !tel) return;
+    if (!nombre || !tel) {
+      document.getElementById('cf-nombre').focus();
+      return;
+    }
+    const btn = document.getElementById('cf-submit');
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+
+    // 1. Enviar a Netlify
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(e.target)).toString()
+      });
+    } catch(_) {}
+
+    // 2. Evento GA4
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'form_submit', { plan, nombre });
+    }
+
+    // 3. Abrir WhatsApp
     const text = encodeURIComponent(
-      `Hola, soy ${nombre}. Mi WhatsApp es ${tel}. Me interesa el plan ${plan}. ${msg}`
+      `Hola, soy ${nombre}. Mi WhatsApp es ${tel}. Me interesa el plan ${plan}.${msg ? ' ' + msg : ''}`
     );
     window.open(`https://wa.me/541161436720?text=${text}`, '_blank', 'noopener');
+
+    // 4. Mostrar éxito
+    e.target.querySelector('.field-row, .field, .chips, textarea, #cf-submit').closest('form');
+    document.getElementById('cf-success').style.display = 'block';
+    btn.style.display = 'none';
+    e.target.reset();
+    document.getElementById('cf-plan').value = 'Raíz';
   });
 
   // ── Mobile hamburger ──
