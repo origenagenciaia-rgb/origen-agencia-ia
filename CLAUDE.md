@@ -1,200 +1,240 @@
-# Proyecto: Página de Ventas de Servicios Web
+# Proyecto: Página de Ventas de Servicios Web — origen.ia
 
 ## Objetivo
-Construir una landing page de ventas de alta conversión para una agencia de diseño web
-ubicada en Zona Oeste, Buenos Aires. El sitio vende 3 servicios: Landing Page, Landing
-Premium y E-commerce.
+Landing page de ventas de alta conversión para **origen.ia**, una agencia de diseño web
+ubicada en Marcos Paz, Buenos Aires. El sitio vende 3 planes web para negocios locales.
+
+## Concepto visual: Naturaleza + Tecnología
+El nombre "origen" y la ciudad del árbol (Marcos Paz) definen toda la estética.
+La metáfora es un árbol que crece con raíces de circuito PCB: naturaleza orgánica
+con estructura digital. Este concepto atraviesa el copy, los nombres de planes,
+los íconos, los SVG decorativos y la paleta de color.
 
 ## Stack
 HTML5 + CSS3 + JavaScript vanilla. Sin frameworks, sin dependencias externas (excepto
-fuentes de Google Fonts e íconos de Lucide o similar vía CDN).
-
-## Workflow de construcción — SEGUIR EN ESTE ORDEN
-
-1. Invocar `/frontend-design` para construir la estructura HTML/CSS/JS completa.
-2. Invocar `/animate` para agregar animaciones y micro-interacciones.
-3. Invocar `/skill-creator:seo-audit` para optimizar el SEO on-page.
-4. Invocar `/skill-creator:web-performance-audit` para auditar y corregir performance.
-
-No saltear pasos. Cada skill construye sobre el resultado del anterior.
+Google Fonts vía CDN). Todo el código en un único `index.html`.
 
 ---
 
 ## Datos del negocio (usar exactamente estos — no inventar)
 
-- **Nombre del negocio:** Black Rose IA
-- **Teléfono / WhatsApp:** 1161436720
-- **Instagram:** [INSTAGRAM] ← reemplazar cuando el usuario lo defina
-- **Ubicación:** Zona Oeste, Buenos Aires, Argentina
+- **Nombre del negocio:** origen.ia
+- **Teléfono / WhatsApp:** 1161436720 → `https://wa.me/541161436720`
+- **Instagram:** @origenn.ia → `https://instagram.com/origenn.ia`
+- **Ubicación:** Marcos Paz, Buenos Aires, Argentina (servicio en todo el país)
 - **Precios:**
-  - Landing Page → $150.000 ARS
-  - Landing Premium → $300.000 ARS
-  - E-commerce → $500.000 ARS
+  - Plan Semilla (Landing) → $150.000 ARS
+  - Plan Raíz (Landing Premium) → $300.000 ARS
+  - Plan Bosque (E-commerce) → $500.000 ARS
 
 ---
 
 ## Diseño y estética — OBLIGATORIO
 
-- Paleta: fondo negro profundo `#080808` o `#0a0a0a`. Acentos metálicos/eléctricos:
-  plateado `#c0c0c0` / `#e8e8e8` con destellos blancos `#ffffff`, y un acento
-  eléctrico secundario en cian eléctrico `#00e5ff` o violeta neón `#a855f7` para
-  highlights, borders activos y glows — nunca como color de fondo.
-- Efecto metálico en textos clave: gradiente `linear-gradient(135deg, #c0c0c0, #ffffff, #a0a0a0)`
-  con `background-clip: text` para títulos principales.
-- Tipografía: sans-serif moderna — `Inter`, `Syne` o `Space Grotesk` (Google Fonts).
-- Espaciado ajustado y denso: secciones compactas, padding reducido, que transmita
-  energía y densidad de información — no diseño "aireado" de agencia genérica.
-  Usar padding vertical de secciones de 60-80px max en desktop, no 120px+.
-- Mobile-first. Responsive en todos los breakpoints.
-- Glassmorphism sutil o bordes con glow metálico/eléctrico para las cards de servicios.
-- Ningún color pastel, beige, crema ni tono corporativo.
+### Paleta de color
+- **Fondo principal:** `#FBFAF4` (papel crema cálido, modo claro)
+- **Fondo secundario:** `#F2EFE3` / `#E8E4D2` para secciones alternadas
+- **Tinta principal:** `#0E2A1E` (verde oscuro casi negro)
+- **Tinta suave:** `#1F3A2C`
+- **Verde bosque:** `#2B5D45` (moss, textos secundarios y labels)
+- **Verde hoja:** `#2E8B57` (acento principal, hojas del árbol, botones primarios)
+- **Teal circuito:** `#2C8B85` (acento tecnológico — raíces PCB, bordes activos)
+- **Variante brillante:** `#4ade80` (hover, highlights de hojas)
+- **Líneas:** `rgba(14,42,30,0.14)` / fuerte `rgba(14,42,30,0.32)`
+- **Muted:** `#5B7165`
+
+Dark mode (toggle disponible): invertir a fondos oscuros `#0B1A12` / `#0E2018`,
+verde brillante `#4ade80`, teal `#2dd4bf`.
+
+### Tipografía
+- **Serif:** `Instrument Serif` (títulos, manifiestos, precios)
+- **Sans:** `Manrope` (cuerpo, labels, navegación)
+- **Mono:** `JetBrains Mono` (badges, etiquetas, números de sección)
+- Google Fonts con `display=swap`.
+
+### Reglas visuales
+- Mobile-first. Responsive en todos los breakpoints (980px y 600px).
+- Secciones con padding 100-140px desktop, 60-80px mobile.
+- Cards de servicios: fondo papel, borde `1px solid var(--line)`, lift en hover +
+  borde verde hoja, esquinas decorativas que aparecen en hover.
+- El árbol SVG con raíces estilo PCB es el elemento visual central del hero.
+- Separadores de sección: SVG de raíces onduladas (`#roots` symbol).
+- Scroll reveal con IntersectionObserver en todos los bloques de contenido.
+- Sin colores corporativos azules, sin flat design genérico, sin paleta oscura/neón.
 
 ---
 
-## Secciones — ESTRUCTURA OBLIGATORIA
+## Secciones — ESTRUCTURA ACTUAL DEL SITIO
 
-### 1. HERO
-- Ocupa 100vh.
-- Titular impactante orientado a la venta: el problema del cliente + la solución.
-  Ejemplo de tono: "Tu negocio necesita una presencia online que venda, no una
-  página que exista." — NO usar este ejemplo textualmente, crear algo original.
-- Subtítulo: 1-2 líneas que refuercen el beneficio inmediato.
-- 2 CTAs: primario ("Quiero mi página" → WhatsApp) y secundario ("Ver servicios").
-- Elemento visual de fondo: gradiente animado, partículas o grid futurista — algo
-  que dé profundidad sin tapar el texto.
-- Badge o prueba social pequeña cerca del CTA ("Ya confiaron en nosotros X negocios
-  de zona oeste" — adaptar al dato real cuando el usuario lo provea).
+### NAV
+- Logo + nombre `origen.ia` con punto verde.
+- Links: Manifiesto, Servicios, Proceso, Trabajos, Preguntas.
+- CTA: botón "Empezar proyecto →" → WhatsApp general.
+- Toggle dark/dark mode (animación cinematic de cortina + luna/sol).
+- Hamburger en mobile.
 
-### 2. POR QUÉ TENER UNA PÁGINA WEB (beneficios reales)
-- Título de sección fuerte, no genérico.
-- 4-6 beneficios concretos orientados al dueño de negocio de zona oeste/AMBA:
-  presencia 24/7, más ventas, credibilidad frente a la competencia, alcance más
-  allá del barrio, automatizar consultas. Sin frases tipo "mejora tu presencia
-  digital" — ir al hueso: cuánto pierde sin página, qué gana con una.
-- Formato: grid de cards con ícono + título + descripción corta.
+### 1. HERO (`#top`)
+- Número de sección: no aplica (es el hero).
+- Árbol SVG animado con raíces PCB a la derecha.
+- Partículas flotantes en canvas (fondo sutil).
+- H1 serif grande: problema del cliente → solución.
+- Subtítulo 1-2 líneas con beneficio directo.
+- 2 CTAs: "Quiero mi página →" (WhatsApp) + "Ver precios" (ghost).
+- Stats debajo: indicadores de entrega, calidad, cobertura.
+- Hint de scroll animado.
 
-### 3. SERVICIOS
-Tres cards en formato comparativo o grid:
+### 2. MANIFIESTO (`#manifiesto`)
+- Etiqueta: `01 · Manifiesto`
+- Grid 2 col: label sticky izquierda + texto largo derecha.
+- Texto editorial serif grande: historia del negocio, por qué nació en Marcos Paz,
+  qué significa la metáfora del árbol, el problema que resuelven.
+- Firma monoespaciada al pie.
 
-| Servicio        | Precio          | Incluye                                                                             |
-|-----------------|-----------------|-------------------------------------------------------------------------------------|
-| Landing Page    | $150.000 ARS    | 1 página, secciones básicas, formulario de contacto, adaptación mobile              |
-| Landing Premium | $300.000 ARS    | Todo lo anterior + animaciones avanzadas, SEO on-page, hasta 5 secciones custom    |
-| E-commerce      | $500.000 ARS    | Tienda online completa, carrito, pasarela de pago, panel de gestión                 |
+### 3. SERVICIOS (`#servicios`)
+- Etiqueta: `02 · Servicios`
+- 3 cards en grid: Plan Semilla / Plan Raíz / Plan Bosque.
+- Plan Raíz es el destacado (`.featured`, fondo tinta, badge "Más elegido").
+- Cada card: número, ícono SVG temático, nombre, descripción, lista de incluye,
+  precio `$XXX.000 / proyecto`, CTA propio → WhatsApp con texto pre-armado.
 
-- Cada card con un CTA propio → WhatsApp con mensaje pre-armado por servicio.
-- Marcar visualmente cuál es el más elegido (badge "Popular" en Landing Premium).
-- NO poner "Precio a consultar" — los precios van claros.
+  | Plan   | Precio       | Incluye                                                                   |
+  |--------|--------------|---------------------------------------------------------------------------|
+  | Semilla | $150.000 ARS | 1 página, formulario contacto, mobile, entrega 7 días hábiles            |
+  | Raíz   | $300.000 ARS | Hasta 5 secciones, animaciones, SEO on-page, entrega 14 días hábiles     |
+  | Bosque | $500.000 ARS | E-commerce completo, MercadoPago, panel gestión, entrega 21 días hábiles |
 
-### 4. CASOS DE ÉXITO
-- Título: "Negocios que ya confían en nosotros" o equivalente.
-- Formato: cards con imagen de preview del sitio real, nombre del negocio, rubro
-  y un resultado concreto/descripción. Cada card incluye un botón "Ver sitio" que
-  abre el link en nueva pestaña.
-- Para las imágenes de preview usar el servicio thum.io (sin API key, gratuito):
-  ```
-  https://image.thum.io/get/width/800/crop/500/https://[URL-DEL-SITIO]
-  ```
-- Casos reales:
+### 4. PROCESO (`#proceso`)
+- Etiqueta: `03 · Proceso`
+- 4 pasos en grid horizontal: Sembrar / Enraizar / Ramificar / Florecer.
+- Cada paso: número grande decorativo, nombre, descripción, dot animado.
+- Metáfora de estaciones para hablar de las etapas del proyecto.
+
+### 5. TRABAJOS (`#trabajos`)
+- Etiqueta: `04 · Trabajos`
+- Grid asimétrico: caso principal tall izquierda + columna derecha (wide + 2 coming soon).
+- Cada trabajo: imagen real del sitio, overlay en hover, nombre, tag de rubro,
+  descripción del resultado, link "Ver sitio →".
+- Coming soon cards: invitación a contactar.
 
   **Caso 1 — Vértigo Vapes**
-  - URL: https://vertigovapes.netlify.app
-  - Imagen: `https://image.thum.io/get/width/800/crop/500/https://vertigovapes.netlify.app`
-  - Rubro: Venta de vaporizadores
-  - Descripción breve orientada al resultado: algo concreto sobre presencia online,
-    consultas por WhatsApp, o visibilidad local — redactar en tono vendedor.
+  - URL: `https://vertigovapes.netlify.app`
+  - Imagen: archivo local `screenshot-vertigo.jpg` (o thum.io como fallback)
+  - Rubro: Vapeadores
+  - Resultado: catálogo online 24hs, consultas WhatsApp automáticas.
 
   **Caso 2 — Pizzería del Amor**
-  - URL: https://pizzeriadelamor.netlify.app
-  - Imagen: `https://image.thum.io/get/width/800/crop/500/https://pizzeriadelamor.netlify.app`
-  - Rubro: Gastronomía / pizzería
-  - Descripción breve orientada al resultado: pedidos online, presencia en zona,
-    diferenciación frente a la competencia — redactar en tono vendedor.
+  - URL: `https://pizzeriadelamor.netlify.app`
+  - Imagen: archivo local `screenshot-pizzeria.jpg` (o thum.io como fallback)
+  - Rubro: Gastronomía
+  - Resultado: menú online, clientes nuevos que los encontraron en la web.
 
-- Las imágenes deben tener bordes redondeados, overlay sutil al hover, y el estilo
-  dark/metálico del resto del sitio (frame o borde con glow).
-- Botón "Ver sitio →" en cada card con `target="_blank" rel="noopener"`.
+  > Si las imágenes locales no existen, usar thum.io:
+  > `https://image.thum.io/get/width/800/crop/500/https://[URL]`
 
-### 5. PREGUNTAS FRECUENTES (FAQ)
-Acordeón interactivo. Incluir estas preguntas con respuestas en tono directo, sin jerga técnica:
+### 6. TESTIMONIOS (`#testimonios`)
+- Etiqueta: `05 · Testimonios`
+- Placeholder mientras no hay testimonios reales: 2 cards con invitación a ser el primero.
+- Cuando haya testimonios: quote serif grande + autor con avatar inicial + rol/empresa.
 
-1. ¿En cuánto tiempo entregan la página?
-2. ¿El precio incluye dominio y hosting?
-3. ¿Puedo pedir cambios después de la entrega?
-4. ¿Trabajan con cuotas o planes de pago?
-5. ¿Necesito saber de tecnología para manejar mi página?
-6. ¿Qué diferencia hay entre la Landing y la Landing Premium?
-7. ¿Atienden solo en zona oeste o también otras zonas?
+### 7. STRIP CTA (sin id propio)
+- Fondo tinta oscura, texto en papel.
+- Mensaje de urgencia: cupos limitados por mes.
+- CTA principal → WhatsApp.
+- 4 datos rápidos: tiempo de respuesta, entrega Semilla, anticipo, zona.
 
-### 6. CTA FINAL / CONTACTO
-- Sección de cierre antes del footer.
-- Mensaje de urgencia o escasez real ("Cupos limitados por mes" o similar).
-- Botón grande → WhatsApp directo al 1161436720.
-- Link a Instagram → [INSTAGRAM].
+### 8. FAQ (`#faq`)
+- Etiqueta: `06 · Preguntas` (o el número que corresponda)
+- Acordeón interactivo.
+- Preguntas:
+  1. ¿En cuánto tiempo entregan la página?
+  2. ¿El precio incluye dominio y hosting?
+  3. ¿Puedo pedir cambios después de la entrega?
+  4. ¿Trabajan con cuotas o planes de pago?
+  5. ¿Necesito saber de tecnología para manejar mi web?
+  6. ¿Qué diferencia Semilla de Raíz?
+  7. ¿Atienden solo en Marcos Paz o también en otras zonas?
 
-### 7. FOOTER
-- **Black Rose IA** — teléfono 1161436720 — Instagram [INSTAGRAM].
-- Zona Oeste, Buenos Aires.
-- Año actual.
-- Sin bloat: sin mapa, sin newsletter, sin links muertos.
+### 9. CONTACTO (`#contacto`)
+- Etiqueta: `07 · Contacto` (o el número que corresponda)
+- Grid 2 col: aside con datos + formulario.
+- Formulario envía a WhatsApp con los datos precargados.
+- Datos: WhatsApp, Instagram @origenn.ia, Estudio Marcos Paz, Horario Lun–Sáb 9-20h.
 
----
-
-## Copywriting — REGLAS DURAS
-
-- Cero texto genérico. Cada línea debe hablar del cliente, su negocio, su zona.
-- Tono: directo, confiable, sin exagerar. Como el mejor vendedor del barrio, no
-  como una multinacional.
-- El dolor antes de la solución: nombrar el problema que tiene el lector antes de
-  ofrecer lo que vendemos.
-- Verbos de acción en los CTAs: "Quiero mi página", "Hablar con un asesor",
-  "Ver precios", "Empezar ahora".
-- No usar: "soluciones integrales", "equipo de expertos", "compromiso con la
-  calidad", ni ningún cliché de agencia.
+### 10. FOOTER
+- Logo + descripción corta.
+- Columnas: Estudio, Servicios, Hablemos.
+- Copyline: `© 2026 origen.ia — Marcos Paz, Buenos Aires`
+- Sin mapa, sin newsletter, sin links muertos.
 
 ---
 
 ## WhatsApp links
 
-Usar este formato para todos los CTAs:
-
 ```
-https://wa.me/541161436720?text=[MENSAJE_PREARMADO]
+https://wa.me/541161436720?text=[MENSAJE]
 ```
 
-Mensajes por servicio:
-- Landing:    `Hola%2C+quiero+info+sobre+la+Landing+Page`
-- Premium:    `Hola%2C+quiero+info+sobre+la+Landing+Premium`
-- E-commerce: `Hola%2C+quiero+info+sobre+el+E-commerce`
-- General:    `Hola%2C+quiero+una+p%C3%A1gina+web+para+mi+negocio`
+| Destino       | Texto pre-armado                                      |
+|---------------|-------------------------------------------------------|
+| Plan Semilla  | `Hola%2C+quiero+info+sobre+el+plan+Semilla`          |
+| Plan Raíz     | `Hola%2C+quiero+info+sobre+el+plan+Ra%C3%ADz`        |
+| Plan Bosque   | `Hola%2C+quiero+info+sobre+el+plan+Bosque`           |
+| General       | `Hola%2C+quiero+una+p%C3%A1gina+web+para+mi+negocio` |
+| Disponibilidad| `Hola%2C+quiero+saber+si+tienen+lugar+este+mes`      |
 
 ---
 
-## Animaciones (guía para /animate)
+## Copywriting — REGLAS DURAS
 
-- Hero: entrada con fade+slide del texto, loop sutil en el fondo.
-- Cards de servicios: hover con lift + glow del borde metálico.
-- Secciones: scroll-reveal con IntersectionObserver — nada que bloquee el render.
-- FAQ: acordeón con transición suave (max-height o transform).
-- Sin librerías de animación >50kb. CSS animations + JS vanilla.
+- Tono: directo, confiable, sin exagerar. Como el mejor vendedor del barrio.
+- La metáfora del árbol/naturaleza se usa en el copy pero sin forzarla ni abusar.
+- El dolor antes de la solución: nombrar el problema antes de ofrecer la respuesta.
+- Verbos de acción en CTAs: "Quiero mi página", "Empezar Semilla", "Hablar con un asesor".
+- No usar: "soluciones integrales", "equipo de expertos", "compromiso con la calidad".
+- Cero texto genérico. Cada línea habla del cliente, su negocio, su zona.
 
 ---
 
-## SEO (guía para /skill-creator:seo-audit)
+## Animaciones
 
-- Meta title: incluir "páginas web", "zona oeste", "Buenos Aires".
-- Meta description orientada a conversión, no a descripción.
+- Hero: fade+slide en entrada, árbol SVG con stroke-dashoffset animado (draw-on),
+  hojas con `leafPop` (scale desde 0), partículas canvas flotantes.
+- Dark mode: transición cinematic de cortina con clip-path + estrellas/luna o sol.
+- Cards servicios: hover lift + borde verde + esquinas decorativas.
+- Proceso: dot animado + número con fade al hacer scroll.
+- Secciones: scroll-reveal con IntersectionObserver + stagger en grids.
+- FAQ: acordeón con stagger reveal + max-height transition.
+- Sin librerías de animación externas. CSS animations + JS vanilla puro.
+
+---
+
+## SEO
+
+- Meta title: incluir "páginas web", "Marcos Paz", "Buenos Aires".
+- Meta description orientada a conversión.
 - Un solo H1 en el hero, headings semánticos en el resto.
 - Alt text en todas las imágenes.
 - Schema markup `LocalBusiness` con los datos del negocio.
-- OG tags completos para compartir en redes.
+- OG tags y Twitter Card completos.
+- Canonical URL: actualizar cuando el dominio esté activo.
 
 ---
 
-## Performance (guía para /skill-creator:web-performance-audit)
+## Performance
 
-- Imágenes en WebP o reemplazar con SVG/gradientes cuando sea posible.
-- Google Fonts con `display=swap`.
-- CSS crítico inline para el above-the-fold.
+- Imágenes locales en JPG/WebP con `loading="lazy"` y dimensiones explícitas.
+- Google Fonts con `display=swap` y `preconnect`.
+- CSS crítico inline (todo el CSS está en el mismo archivo HTML).
 - Sin JavaScript bloqueante en el `<head>`.
 - Target: Lighthouse ≥ 90 en mobile.
+
+---
+
+## Bugs conocidos a corregir
+
+1. **Contadores hero**: el JS sobreescribe las stats con números que no coinciden
+   con los labels. Corregir o eliminar el countUp.
+2. **Numeración duplicada**: Trabajos y Testimonios usan el mismo número "04 ·".
+   Ajustar la secuencia: Trabajos 04, Testimonios 05, Strip sin número, FAQ 06, Contacto 07.
+3. **Imágenes de trabajos**: verificar que `screenshot-vertigo.jpg` y
+   `screenshot-pizzeria.jpg` existan. Si no, cambiar a URLs thum.io.

@@ -48,13 +48,13 @@
     "addressRegion": "Buenos Aires",
     "addressCountry": "AR"
   },
-  "areaServed": ["Marcos Paz", "Marcos Paz", "Gran Buenos Aires", "Argentina"],
+  "areaServed": ["Marcos Paz", "Gran Buenos Aires", "Argentina"],
   "priceRange": "$$",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
-    "opens": "10:00",
-    "closes": "19:00"
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "20:00"
   },
   "logo": {
     "@type": "ImageObject",
@@ -78,11 +78,10 @@
 
 <script>try{if(localStorage.getItem('origen-theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}</script>
 <meta name="google-site-verification" content="_oZR6KJd_4ypUB3FGno5ABrGsKPh1DtrImD0geQo-rs" />
-<link rel="preload" href="origen-logo.png" as="image" type="image/png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="dns-prefetch" href="https://image.thum.io" />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
 <style>
   :root{
@@ -129,22 +128,31 @@
   /* ════════ NAV ════════ */
   nav.top{
     position:sticky;top:0;z-index:50;
-    backdrop-filter:saturate(140%) blur(10px);
-    background:rgba(251,250,244,.78);
-    border-bottom:1px solid var(--line);
+    padding:14px 20px 0;
+    background:transparent;
   }
-  nav.top .inner{display:flex;align-items:center;justify-content:space-between;height:72px}
-  .brand{display:flex;align-items:center;gap:12px}
-  .brand-mark{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--paper);border:1px solid var(--line)}
-  .brand-mark img{width:30px;height:30px;object-fit:contain}
-  .brand-name{font-family:var(--serif);font-size:24px;letter-spacing:-.01em}
+  nav.top .inner{
+    display:flex;align-items:center;justify-content:space-between;
+    height:62px;max-width:1100px;margin:0 auto;padding:0 10px 0 8px;
+    background:rgba(251,250,244,.94);
+    backdrop-filter:saturate(150%) blur(16px);
+    border:1px solid var(--line);
+    border-radius:50px;
+    box-shadow:0 2px 14px rgba(14,42,30,.06),0 1px 3px rgba(14,42,30,.03);
+    transition:box-shadow .35s ease,border-color .35s ease;
+  }
+  nav.top .btn{padding:10px 20px;font-size:13px;border-radius:999px}
+  .brand{display:flex;align-items:center;gap:10px}
+  .brand-mark{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line)}
+  .brand-mark img{width:28px;height:28px;object-fit:contain}
+  .brand-name{font-family:var(--serif);font-size:22px;letter-spacing:-.01em}
   .brand-name .dot{color:var(--leaf)}
-  .nav-links{display:flex;gap:32px;align-items:center}
-  .nav-links a{font-size:14px;color:var(--ink-soft);position:relative;padding:6px 0}
+  .nav-links{display:flex;gap:28px;align-items:center}
+  .nav-links a{font-size:13.5px;color:var(--ink-soft);position:relative;padding:6px 0}
   .nav-links a:hover{color:var(--leaf)}
   .nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--leaf);transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
   .nav-links a:hover::after{transform:scaleX(1)}
-  .nav-cta{display:flex;gap:12px;align-items:center}
+  .nav-cta{display:flex;gap:10px;align-items:center}
   /* Mobile hamburger */
   .nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px}
   .nav-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
@@ -152,12 +160,14 @@
   .nav-hamburger.open span:nth-child(2){opacity:0}
   .nav-hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
   .mobile-menu{
-    display:flex;position:absolute;top:72px;left:0;right:0;
-    background:rgba(251,250,244,.96);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);padding:24px 32px;
-    flex-direction:column;gap:20px;z-index:49;
+    display:flex;position:absolute;top:86px;left:20px;right:20px;
+    background:rgba(251,250,244,.97);backdrop-filter:blur(14px);
+    border:1px solid var(--line);border-radius:16px;
+    padding:20px 24px;
+    flex-direction:column;gap:16px;z-index:49;
     visibility:hidden;opacity:0;transform:translateY(-8px);pointer-events:none;
     transition:opacity .25s ease,transform .25s ease,visibility .25s;
+    box-shadow:0 8px 28px rgba(14,42,30,.1);
   }
   .mobile-menu.open{visibility:visible;opacity:1;transform:translateY(0);pointer-events:auto}
   .mobile-menu a{font-size:15px;color:var(--ink-soft);padding:4px 0;border-bottom:1px solid var(--line)}
@@ -195,33 +205,76 @@
 
   /* ════════ HERO ════════ */
   section{position:relative}
-  .hero{padding:80px 0 120px}
-  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center}
-  .eyebrow{display:inline-flex;align-items:center;gap:12px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--paper);margin-bottom:36px}
+  .hero{
+    padding:72px 0 100px;
+    background:url(bg-hero.jpg) center 60% / cover no-repeat;
+  }
+  .hero .wrap{max-width:1440px;padding:0 60px}
+  .hero::before{
+    content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:linear-gradient(105deg,
+      rgba(251,250,244,.97) 0%,
+      rgba(251,250,244,.92) 26%,
+      rgba(251,250,244,.55) 50%,
+      rgba(251,250,244,.12) 68%,
+      transparent 82%);
+  }
+  .hero-centered{
+    display:grid;
+    grid-template-columns:50% 1fr;
+    align-items:center;
+    gap:32px;
+    max-width:unset;
+    margin:0;
+    text-align:left;
+    position:relative;z-index:1;
+    min-height:540px;
+  }
+  .hero-copy{max-width:560px}
+  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:heroIn .7s ease-out .3s backwards;
+  }
+  .hero-visual::before{
+    content:"";position:absolute;
+    width:520px;height:520px;border-radius:50%;
+    background:radial-gradient(circle at 50% 45%,rgba(46,139,87,.10) 0%,rgba(44,139,133,.04) 50%,transparent 70%);
+    pointer-events:none;
+  }
+  .hero-logo-img{
+    width:clamp(360px,38vw,480px);height:clamp(360px,38vw,480px);
+    object-fit:contain;
+    position:relative;z-index:1;
+    animation:floaty 6s ease-in-out infinite;
+    filter:drop-shadow(0 8px 32px rgba(46,139,87,.22)) drop-shadow(0 0 64px rgba(44,139,133,.10));
+  }
+  .hero-botanical{
+    width:220px;height:auto;
+    opacity:1;
+    animation:floaty 6s ease-in-out infinite;
+    position:relative;z-index:1;
+    margin:0;
+  }
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(251,250,244,.8);margin-bottom:36px}
   .eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--leaf);box-shadow:0 0 0 0 rgba(46,139,87,.5);animation:pulse 2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,139,87,.5)}70%{box-shadow:0 0 0 10px rgba(46,139,87,0)}100%{box-shadow:0 0 0 0 rgba(46,139,87,0)}}
   h1.hero-title{
     font-family:var(--serif);font-weight:400;
-    font-size:clamp(48px,7vw,104px);line-height:.96;letter-spacing:-.02em;
+    font-size:clamp(38px,5.5vw,80px);line-height:1;letter-spacing:-.02em;
     margin-bottom:28px;color:var(--ink);
   }
   h1.hero-title .it{font-style:italic;color:var(--moss)}
   h1.hero-title .leaf-word{color:var(--leaf)}
-  .hero-sub{font-size:18px;color:var(--ink-soft);max-width:520px;line-height:1.55;margin-bottom:40px}
-  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  .hero-meta{display:flex;gap:48px;margin-top:64px;padding-top:32px;border-top:1px solid var(--line)}
+  .hero-sub{font-size:18px;color:var(--ink-soft);max-width:520px;line-height:1.6;margin:0 0 40px}
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;justify-content:flex-start}
+  .hero-meta{display:flex;gap:48px;margin-top:64px;padding-top:32px;border-top:1px solid var(--line);justify-content:flex-start}
   .hero-meta .item .n{font-family:var(--serif);font-size:42px;line-height:1;color:var(--ink)}
   .hero-meta .item .l{font-size:12px;color:var(--muted);margin-top:6px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.12em}
 
-  .hero-art{position:relative;height:560px;display:grid;place-items:center}
-  .hero-art .ring{position:absolute;inset:-5%;border-radius:50%;background:radial-gradient(circle at 50% 44%,rgba(46,139,87,.11),rgba(44,139,133,.05) 45%,transparent 68%)}
-  .hero-art img.tree{width:480px;max-width:100%;position:relative;z-index:2;filter:drop-shadow(0 30px 60px rgba(46,139,87,.18));animation:floaty 8s ease-in-out infinite}
-  @keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
-  .hero-art .dial{position:absolute;inset:6%;border:1px dashed rgba(46,139,87,.2);border-radius:50%;animation:spin 80s linear infinite}
-  .hero-art .dial::before,.hero-art .dial::after{content:"";position:absolute;width:8px;height:8px;border-radius:50%;background:var(--leaf)}
-  .hero-art .dial::before{top:-4px;left:50%;transform:translateX(-50%)}
-  .hero-art .dial::after{bottom:-4px;left:50%;transform:translateX(-50%);background:var(--circuit)}
-  @keyframes spin{to{transform:rotate(360deg)}}
 
   /* roots SVG separator */
   .roots-bg{position:absolute;left:0;right:0;width:100%;pointer-events:none;color:var(--leaf);opacity:.18}
@@ -249,9 +302,12 @@
   .mani-sig::before{content:"";width:60px;height:1px;background:var(--line-strong)}
 
   /* ════════ SERVICIOS ════════ */
-  .servicios{padding:140px 0 120px}
+  .servicios{padding:140px 0 120px;background:url(bg-servicios.png) center/cover no-repeat;position:relative}
+  .servicios::before{content:"";position:absolute;inset:0;background:rgba(8,20,12,.72);pointer-events:none}
+  .servicios .wrap{position:relative;z-index:1}
+  .servicios .section-head h2,.servicios .section-head p{color:var(--paper)}
   .section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:64px;gap:48px;flex-wrap:wrap}
-  .section-head h2{font-family:var(--serif);font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.02em;max-width:680px}
+  .section-head h2{font-family:"Cormorant Garamond",var(--serif);font-size:clamp(44px,5.5vw,80px);font-weight:400;line-height:.95;letter-spacing:-.01em;max-width:680px}
   .section-head h2 .it{font-style:italic;color:var(--moss)}
   .section-head p{max-width:380px;color:var(--ink-soft);font-size:16px}
 
@@ -260,12 +316,13 @@
   .svc:hover{border-color:var(--leaf);transform:translateY(-4px)}
   .svc .num{font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.16em}
   .svc .ico{width:64px;height:64px;margin:24px 0;color:var(--leaf);transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
-  .svc h3{font-family:var(--serif);font-size:32px;line-height:1.1;margin-bottom:12px}
+  .svc h3{font-family:"Cormorant Garamond",var(--serif);font-size:40px;font-style:italic;font-weight:400;line-height:1;margin-bottom:12px;letter-spacing:-.01em}
   .svc p{color:var(--ink-soft);font-size:14px;line-height:1.6;margin-bottom:24px}
+  .svc-who{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--moss);background:rgba(46,139,87,.08);border:1px solid var(--line);border-radius:4px;padding:6px 10px;margin-bottom:20px;display:inline-block}
   .svc ul{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
   .svc ul li{font-size:13px;color:var(--ink-soft);display:flex;gap:10px;align-items:flex-start}
   .svc ul li::before{content:"";flex:0 0 14px;height:14px;margin-top:4px;background:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14'><path d='M7 1 C5 4 1 4 1 7 C1 10 5 10 7 13 C9 10 13 10 13 7 C13 4 9 4 7 1 Z' fill='%232E8B57'/></svg>") center/contain no-repeat}
-  .svc .price{font-family:var(--serif);font-size:42px;color:var(--ink);display:flex;align-items:baseline;gap:6px;margin-bottom:20px}
+  .svc .price{font-family:"Cormorant Garamond",var(--serif);font-size:52px;font-weight:400;color:var(--ink);display:flex;align-items:baseline;gap:6px;margin-bottom:20px}
   .svc .price .cur{font-size:18px;color:var(--muted)}
   .svc .price .per{font-size:13px;color:var(--muted);font-family:var(--mono);margin-left:8px}
   .svc .corner{position:absolute;width:24px;height:24px;border:1.5px solid var(--leaf);opacity:0;transition:opacity .3s}
@@ -298,53 +355,40 @@
   .proc-step .dot{position:absolute;left:-5px;top:32px;width:9px;height:9px;border-radius:50%;background:var(--paper-2);border:1.5px solid var(--leaf);transform:scale(0);transition:transform .35s cubic-bezier(.34,1.56,.64,1) .45s}
   .proc-step.visible .dot{transform:scale(1)}
 
-  /* ════════ TRABAJOS ════════ */
+  /* ════════ TRABAJOS — Editorial ════════ */
   .trabajos{padding:140px 0}
-  .work-grid{display:grid;grid-template-columns:2fr 1fr;gap:24px}
-  .work-grid .row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-  .work{position:relative;aspect-ratio:4/3;overflow:hidden;border:1px solid var(--line);background:var(--paper-2);transition:all .3s ease;cursor:pointer}
-  .work.tall{aspect-ratio:1/1.45}
-  .work.wide{aspect-ratio:16/9}
-  .work:hover{transform:translateY(-4px);border-color:var(--leaf)}
-  .work .placeholder{position:absolute;inset:0;background-image:repeating-linear-gradient(135deg,rgba(46,139,87,.08) 0 1px,transparent 1px 14px),linear-gradient(180deg,var(--paper-2),var(--paper-3));display:flex;align-items:center;justify-content:center}
-  .work .placeholder span{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--moss);opacity:.7}
-  .work img.work-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
-  .work:hover img.work-img{transform:scale(1.03)}
-  .work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(14,42,30,.55) 0%,transparent 50%);opacity:0;transition:opacity .3s}
-  .work:hover .work-overlay{opacity:1}
-  .work .meta{position:absolute;left:24px;right:24px;bottom:20px;display:flex;justify-content:space-between;align-items:end;color:var(--ink)}
-  .work .meta .t{font-family:var(--serif);font-size:24px;line-height:1.05}
-  .work .meta .t .it{font-style:italic;color:var(--moss)}
-  .work .meta .tag{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);padding:4px 8px;border:1px solid var(--line-strong);border-radius:2px;background:rgba(251,250,244,.7);backdrop-filter:blur(4px)}
-  .work-img-loaded .meta .t,.work-img-loaded .meta .tag{color:var(--paper)}
-  .work-img-loaded .meta .t .it{color:#a8d5b8}
-  .work-img-loaded .meta .tag{background:rgba(14,42,30,.6);border-color:rgba(251,250,244,.2);color:var(--paper)}
+  .proj-list{margin-top:80px}
+  .proj-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:80px 0;border-top:1px solid var(--line);position:relative}
+  .proj-row:last-child{border-bottom:1px solid var(--line)}
+  .proj-row.rev{direction:rtl}
+  .proj-row.rev>*{direction:ltr}
+  .proj-num{font-family:var(--mono);font-size:clamp(80px,12vw,160px);line-height:1;color:var(--ink);opacity:.04;position:absolute;top:50%;transform:translateY(-50%);pointer-events:none;user-select:none;letter-spacing:-.04em}
+  .proj-row:not(.rev) .proj-num{left:-30px}
+  .proj-row.rev .proj-num{right:-30px;direction:ltr}
+  .proj-copy{position:relative;z-index:1}
+  .proj-rubro{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--circuit);display:inline-flex;align-items:center;gap:8px;margin-bottom:20px}
+  .proj-rubro::before{content:'';display:inline-block;width:20px;height:1px;background:var(--circuit)}
+  .proj-name{font-family:var(--serif);font-size:clamp(36px,4vw,56px);line-height:1.05;color:var(--ink);letter-spacing:-.02em;margin-bottom:20px}
+  .proj-name .it{font-style:italic;color:var(--moss)}
+  .proj-result{font-size:15px;color:var(--ink-soft);line-height:1.7;max-width:400px;margin-bottom:32px}
+  .proj-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);text-decoration:none;border-bottom:1px solid transparent;padding-bottom:2px;transition:color .2s,border-color .2s}
+  .proj-cta:hover{color:var(--circuit);border-color:var(--circuit)}
+  .proj-arr{transition:transform .2s ease}
+  .proj-cta:hover .proj-arr{transform:translateX(4px)}
+  .proj-browser{border-radius:10px 10px 8px 8px;overflow:hidden;box-shadow:0 20px 60px rgba(14,42,30,.1),0 4px 16px rgba(14,42,30,.05);transition:transform .4s ease,box-shadow .4s ease;background:var(--paper-2);border:1px solid var(--line);text-decoration:none;display:block}
+  .proj-browser:hover{transform:translateY(-6px);box-shadow:0 32px 80px rgba(14,42,30,.15),0 8px 24px rgba(14,42,30,.08)}
+  .browser-chrome{background:var(--paper-3,#E8E4D2);border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:12px}
+  .browser-dots{display:flex;gap:5px;flex-shrink:0}
+  .browser-dots span{width:9px;height:9px;border-radius:50%}
+  .browser-dots span:nth-child(1){background:rgba(255,96,82,.45)}
+  .browser-dots span:nth-child(2){background:rgba(255,189,68,.45)}
+  .browser-dots span:nth-child(3){background:rgba(39,201,63,.45)}
+  .browser-url{flex:1;font-family:var(--mono);font-size:10px;color:var(--ink);opacity:.4;background:rgba(14,42,30,.05);border-radius:4px;padding:4px 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .browser-body{overflow:hidden;aspect-ratio:4/3}
+  .browser-body picture{display:block;width:100%;height:100%}
+  .browser-body img.work-img{display:block;width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .6s cubic-bezier(.25,.46,.45,.94)}
+  .proj-browser:hover .work-img{transform:scale(1.04) translateY(-1%)}
 
-  /* ── Work info strip ── */
-  .work-wrap{display:flex;flex-direction:column}
-  .work-info{padding:18px 22px 16px;background:var(--paper);border:1px solid var(--line);border-top:none;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
-  .work-info .result{font-size:13px;color:var(--ink-soft);line-height:1.6;max-width:520px}
-  .work-info .see-site{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);display:inline-flex;align-items:center;gap:6px;white-space:nowrap;flex-shrink:0;padding:4px 0;transition:color .2s}
-  .work-info .see-site:hover{color:var(--circuit)}
-  .work-info .see-site .arr{display:inline-block;transition:transform .2s ease}
-  .work-info .see-site:hover .arr{transform:translateX(3px)}
-
-  /* ════════ STRIP / CTA ════════ */
-  .strip{padding:120px 0;background:var(--ink);color:var(--paper);overflow:hidden}
-  .strip::before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(circle at 20% 80%,rgba(46,139,87,.25),transparent 50%),radial-gradient(circle at 80% 20%,rgba(44,139,133,.2),transparent 50%)}
-  .strip .inner{position:relative;display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:center}
-  .strip h3{font-family:var(--serif);font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.02em}
-  .strip h3 .it{font-style:italic;color:#7FCB9B}
-  .strip p{color:rgba(251,250,244,.7);font-size:16px;margin-top:20px;max-width:480px}
-  .strip .quick{display:flex;flex-direction:column;gap:14px}
-  .strip .quick .q{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid rgba(251,250,244,.12);font-size:14px;opacity:0;transform:translateX(12px);transition:opacity .4s ease,transform .4s ease}
-  .strip .quick .q:nth-child(1){transition-delay:.05s}
-  .strip .quick .q:nth-child(2){transition-delay:.18s}
-  .strip .quick .q:nth-child(3){transition-delay:.31s}
-  .strip .quick .q:nth-child(4){transition-delay:.44s}
-  .strip .quick.visible .q{opacity:1;transform:none}
-  .strip .quick .q .k{color:rgba(251,250,244,.6);font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
-  .strip .quick .q .v{font-family:var(--serif);font-size:24px;color:#fff}
 
   /* ════════ FAQ ════════ */
   .faq{padding:140px 0;background:var(--paper-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -382,6 +426,19 @@
   .contact-aside .info .row{display:flex;gap:18px;align-items:flex-start;padding-bottom:24px;border-bottom:1px solid var(--line)}
   .contact-aside .info .row .k{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);width:90px;flex-shrink:0;padding-top:4px}
   .contact-aside .info .row .v{font-family:var(--serif);font-size:22px;line-height:1.3}
+  .contact-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--leaf);border:1px solid rgba(46,139,87,.3);border-radius:2px;padding:6px 12px;margin-bottom:28px}
+  .contact-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--leaf);flex-shrink:0;animation:badgePulse 2s ease-in-out infinite}
+  @keyframes badgePulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.8)}}
+  .contact-wa-btn{display:inline-flex;align-items:center;gap:10px;margin-top:28px;padding:11px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);text-decoration:none;border:1px solid rgba(46,139,87,.4);border-radius:2px;transition:all .2s ease}
+  .contact-wa-btn:hover{background:var(--leaf);color:#fff;border-color:var(--leaf)}
+  .contact-wa-btn svg{flex-shrink:0}
+  .radio-group{display:flex;gap:8px;flex-wrap:wrap}
+  .radio-opt{display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px 14px;border:1px solid var(--line-strong);border-radius:999px;transition:all .2s ease;user-select:none}
+  .radio-opt input[type="radio"]{display:none}
+  .radio-opt span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);transition:color .2s}
+  .radio-opt:hover{border-color:var(--leaf)}
+  .radio-opt.on{background:var(--leaf);border-color:var(--leaf)}
+  .radio-opt.on span{color:#fff}
 
   /* ════════ FOOTER ════════ */
   footer{padding:48px 0 32px;border-top:1px solid var(--line);background:var(--paper)}
@@ -400,19 +457,25 @@
     .nav-links{display:none}
     .nav-hamburger{display:flex}
     .nav-cta{display:none}
-    .hero-grid,.mani-grid,.svc-grid,.proc-grid,.work-grid,.work-grid .row,.strip .inner,.faq-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .mani-grid,.svc-grid,.proc-grid,.faq-grid,.contact-grid{grid-template-columns:1fr;gap:40px}
+    .proj-row{grid-template-columns:1fr;gap:32px;padding:56px 0;direction:ltr}
+    .proj-copy{order:2}
+    .proj-browser{order:1}
+    .proj-num{display:none}
     .hero{padding:48px 0 80px}
-    .hero-art{height:auto;margin-top:8px}
-    .hero-art img.tree{width:80%}
-    .hero-meta{flex-wrap:wrap;gap:24px}
+    .hero-centered{grid-template-columns:1fr;gap:32px;text-align:center}
+    .hero-copy{max-width:unset;text-align:center;padding-left:0}
+    .hero-copy::before{display:none}
+    .hero-visual{display:none}
+    .hero-actions{justify-content:center}
+    .hero-meta{justify-content:center;flex-wrap:wrap;gap:24px}
     .mani-label{position:static}
     .proc-step{border-left:none;border-top:1px solid var(--line);padding-top:28px}
     .proc-step .dot{display:none}
     .work,.work.tall,.work.wide{aspect-ratio:4/3}
-    .strip .quick{margin-top:16px}
     .faq-grid{grid-template-columns:1fr}
     .contact-form{padding:28px}
-    .work-grid .right-col{display:flex;flex-direction:column;gap:24px}
+    .proj-row{padding:40px 0;gap:24px}
   }
   @media(max-width:600px){
     .wrap{padding:0 20px}
@@ -430,16 +493,29 @@
   .hero-copy .hero-sub{animation-delay:.34s}
   .hero-copy .hero-actions{animation-delay:.46s}
   .hero-copy .hero-meta{animation-delay:.58s}
-  .hero-art{animation:heroIn .7s ease-out .28s backwards}
+  .hero-visual{animation:heroIn .7s ease-out .28s backwards}
 
   /* ── Scroll progress bar ── */
   #scroll-prog{position:fixed;top:0;left:0;height:2px;width:0%;background:var(--leaf);z-index:200;pointer-events:none;transition:width .08s linear}
 
   /* ── Nav scrolled ── */
-  nav.top.scrolled{box-shadow:0 2px 20px rgba(14,42,30,.1)}
+  nav.top.scrolled .inner{box-shadow:0 8px 30px rgba(14,42,30,.14),0 2px 8px rgba(14,42,30,.06);border-color:rgba(14,42,30,.2)}
 
   /* ── Button press ── */
   .btn:active,.btn-ghost:active{transform:translateY(0) scale(.98)!important;transition-duration:.1s!important}
+
+  /* ════════ ROOTS GLOW ════════ */
+  .roots-glow{overflow:visible!important;--cursor-angle:0deg;--rg-opacity:0}
+  .roots-glow::before{
+    content:"";position:absolute;inset:-1.5px;border-radius:inherit;
+    padding:1.5px;pointer-events:none;z-index:2;
+    background:conic-gradient(from var(--cursor-angle) at center,
+      #2B5D45,#2E8B57 25%,#2C8B85 50%,#4ade80 75%,#2B5D45);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+    opacity:var(--rg-opacity,0);transition:opacity .25s ease-out}
+  .roots-glow:not(:hover)::before{opacity:0;transition:opacity .8s ease-in-out}
 
   /* ════════ DARK MODE ════════ */
   @keyframes starTwinkle{from{opacity:.1}to{opacity:.9}}
@@ -463,15 +539,12 @@
       radial-gradient(1200px 600px at 80% -10%,rgba(74,222,128,.09),transparent 60%),
       radial-gradient(900px 500px at -10% 30%,rgba(45,212,191,.08),transparent 60%);
   }
-  html.dark nav.top{background:rgba(11,26,18,.88);border-bottom-color:rgba(229,237,233,.07)}
-  html.dark .mobile-menu{background:rgba(11,26,18,.96)}
+  html.dark nav.top .inner{background:rgba(11,26,18,.93);border-color:rgba(229,237,233,.09)}
+  html.dark .mobile-menu{background:rgba(11,26,18,.97);border-color:rgba(229,237,233,.09)}
   html.dark .svc{background:var(--paper-2)}
   html.dark .svc.featured{background:#1A3A28;border-color:#2E5A3E}
   html.dark .svc.featured h3,html.dark .svc.featured .price{color:var(--paper)}
   html.dark .contact-form{background:var(--paper-2)}
-  html.dark .strip{background:#162E1E}
-  html.dark .strip p{color:rgba(229,237,233,.7)}
-  html.dark .strip .quick .q{border-bottom-color:rgba(229,237,233,.1)}
   html.dark .work{background:var(--paper-2)}
   html.dark footer{background:var(--paper-2)}
   html.dark .work-info{background:var(--paper-2);border-color:var(--line)}
@@ -498,81 +571,14 @@
   body.cursor-ready,body.cursor-ready *{cursor:none}
   @media(hover:none){#cursor,#cursor-ring{display:none}}
 
-  /* ── Hero particles ── */
-  #hero-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.5}
 
   @media(prefers-reduced-motion:reduce){
     *{animation:none!important;transition:none!important}
   }
 
-  /* ════════ TESTIMONIOS ════════ */
-  .testimonios{padding:100px 0;background:var(--paper);border-bottom:1px solid var(--line)}
-  .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:56px}
-  .testi-card{padding:40px 40px 32px;background:var(--paper-2);border:1px solid var(--line);position:relative;transition:border-color .3s,transform .3s}
-  .testi-card:hover{border-color:var(--leaf);transform:translateY(-3px)}
-  .testi-card::before{content:'\201C';position:absolute;top:18px;left:30px;font-family:var(--serif);font-size:96px;line-height:.7;color:var(--leaf);opacity:.22;pointer-events:none;user-select:none}
-  .testi-quote{font-family:var(--serif);font-size:clamp(19px,2vw,26px);line-height:1.38;color:var(--ink);margin-bottom:28px;padding-top:36px}
-  .testi-author{display:flex;align-items:center;gap:14px;padding-top:20px;border-top:1px solid var(--line)}
-  .testi-author .avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--leaf),var(--circuit));display:grid;place-items:center;font-family:var(--serif);font-size:18px;color:#fff;flex-shrink:0}
-  .testi-author .name{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);line-height:1.6}
-  .testi-author .role{font-size:12px;color:var(--muted);margin-top:2px}
-  .testi-stars{display:flex;gap:2px;margin-bottom:6px}
-  .testi-stars span{color:var(--leaf);font-size:13px}
-  html.dark .testi-card{background:var(--paper-2)}
-  @media(max-width:980px){.testi-grid{grid-template-columns:1fr}}
 
-  /* ── Hero second ring ── */
-  .hero-art .dial-2{position:absolute;inset:0%;border:1px solid rgba(44,139,133,.15);border-radius:50%;animation:spin 140s linear infinite reverse;opacity:.5}
-  .hero-art .dial-2::before{content:"";position:absolute;width:6px;height:6px;border-radius:50%;background:var(--circuit);top:50%;right:-3px;transform:translateY(-50%)}
-  .hero-art .glow{position:absolute;inset:5%;border-radius:50%;background:radial-gradient(circle at 48% 42%,rgba(46,139,87,.16) 0%,rgba(44,139,133,.08) 42%,transparent 68%);animation:glowPulse 5s ease-in-out infinite;pointer-events:none}
-  @keyframes glowPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
 
-  /* ── Próximos proyectos ── */
-  .work.coming-soon .placeholder{background:var(--paper-2);background-image:repeating-linear-gradient(135deg,rgba(46,139,87,.06) 0 1px,transparent 1px 18px)}
-  .work.coming-soon .cs-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px}
-  .work.coming-soon .cs-badge{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--moss);border:1px solid var(--line-strong);padding:5px 12px;border-radius:999px}
-  .work.coming-soon .cs-cta{font-family:var(--serif);font-size:20px;color:var(--ink);text-align:center;line-height:1.2}
-  .work.coming-soon .cs-link{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf);display:inline-flex;align-items:center;gap:6px;transition:gap .2s}
-  .work.coming-soon:hover .cs-link{gap:10px}
 
-  /* ── Tree SVG animado ── */
-  .tree-svg{width:450px;max-width:100%;position:relative;z-index:2;filter:drop-shadow(0 40px 70px rgba(46,139,87,.22));animation:floaty 8s ease-in-out infinite}
-  .tree-svg .ring-arc{stroke-dasharray:535;stroke-dashoffset:535;animation:svgDraw 1s ease-out 2.0s forwards}
-  .tree-svg .ring-dot{opacity:0;animation:svgFade .3s ease 2.1s forwards}
-  .tree-svg .crown-glow{opacity:0;animation:svgFade .9s ease 1.85s forwards}
-  .tree-svg .rt{stroke-dasharray:90;stroke-dashoffset:90;animation:svgDraw .48s ease-out .28s forwards}
-  .tree-svg .rt2{stroke-dasharray:110;stroke-dashoffset:110;animation:svgDraw .48s ease-out .36s forwards}
-  .tree-svg .rt3{stroke-dasharray:85;stroke-dashoffset:85;animation:svgDraw .44s ease-out .44s forwards}
-  .tree-svg .rt-dot{opacity:0;animation:svgFade .24s ease .68s forwards}
-  .tree-svg .trunk-path{stroke-dasharray:115;stroke-dashoffset:115;animation:svgDraw .72s ease-out .62s forwards}
-  .tree-svg .trunk-2{stroke-dasharray:110;stroke-dashoffset:110;animation:svgDraw .72s ease-out .67s forwards}
-  .tree-svg .trunk-3{stroke-dasharray:108;stroke-dashoffset:108;animation:svgDraw .72s ease-out .70s forwards}
-  .tree-svg .upper-trunk{stroke-dasharray:62;stroke-dashoffset:62;animation:svgDraw .44s ease-out 1.04s forwards}
-  .tree-svg .nd{opacity:0;animation:svgFade .26s ease forwards}
-  .tree-svg .nd-1{animation-delay:.94s} .tree-svg .nd-2{animation-delay:1.08s}
-  .tree-svg .nd-3{animation-delay:1.24s} .tree-svg .nd-4{animation-delay:1.42s}
-  .tree-svg .br-l1{stroke-dasharray:92;stroke-dashoffset:92;animation:svgDraw .44s ease-out .86s forwards}
-  .tree-svg .br-r1{stroke-dasharray:92;stroke-dashoffset:92;animation:svgDraw .44s ease-out .91s forwards}
-  .tree-svg .br-l1b{stroke-dasharray:72;stroke-dashoffset:72;animation:svgDraw .38s ease-out 1.08s forwards}
-  .tree-svg .br-r1b{stroke-dasharray:72;stroke-dashoffset:72;animation:svgDraw .38s ease-out 1.13s forwards}
-  .tree-svg .br-l2{stroke-dasharray:78;stroke-dashoffset:78;animation:svgDraw .4s ease-out 1.06s forwards}
-  .tree-svg .br-r2{stroke-dasharray:78;stroke-dashoffset:78;animation:svgDraw .4s ease-out 1.11s forwards}
-  .tree-svg .br-l3{stroke-dasharray:62;stroke-dashoffset:62;animation:svgDraw .37s ease-out 1.26s forwards}
-  .tree-svg .br-r3{stroke-dasharray:62;stroke-dashoffset:62;animation:svgDraw .37s ease-out 1.31s forwards}
-  .tree-svg .br-l4{stroke-dasharray:52;stroke-dashoffset:52;animation:svgDraw .34s ease-out 1.44s forwards}
-  .tree-svg .br-r4{stroke-dasharray:52;stroke-dashoffset:52;animation:svgDraw .34s ease-out 1.49s forwards}
-  .tree-svg .br-top{stroke-dasharray:46;stroke-dashoffset:46;animation:svgDraw .32s ease-out 1.42s forwards}
-  .tree-svg .lf{opacity:0;transform-box:fill-box;transform-origin:center;transform:scale(0);animation:leafPop .38s cubic-bezier(.34,1.56,.64,1) forwards}
-  .tree-svg .lf-1a{animation-delay:1.52s} .tree-svg .lf-1b{animation-delay:1.58s} .tree-svg .lf-1c{animation-delay:1.64s}
-  .tree-svg .lf-2a{animation-delay:1.55s} .tree-svg .lf-2b{animation-delay:1.61s} .tree-svg .lf-2c{animation-delay:1.67s}
-  .tree-svg .lf-3a{animation-delay:1.7s}  .tree-svg .lf-3b{animation-delay:1.76s}
-  .tree-svg .lf-4a{animation-delay:1.73s} .tree-svg .lf-4b{animation-delay:1.79s}
-  .tree-svg .lf-7a{animation-delay:1.84s} .tree-svg .lf-8a{animation-delay:1.87s}
-  .tree-svg .lf-c1{animation-delay:1.81s} .tree-svg .lf-c2{animation-delay:1.85s}
-  .tree-svg .lf-c3{animation-delay:1.91s} .tree-svg .lf-c4{animation-delay:1.95s} .tree-svg .lf-c5{animation-delay:1.88s}
-  @keyframes svgDraw{to{stroke-dashoffset:0}}
-  @keyframes svgFade{to{opacity:1}}
-  @keyframes leafPop{0%{opacity:0;transform:scale(0)}100%{opacity:1;transform:scale(1)}}
 
   /* ── Hero CTA shimmer ── */
   .hero-actions .btn{overflow:hidden}
@@ -580,9 +586,10 @@
   @keyframes btnShimmer{0%,100%{left:-60%}50%{left:120%}}
 
   /* ── Hero dot-grid atmosphere ── */
-  .hero{background-image:radial-gradient(circle,rgba(46,139,87,.072) 1px,transparent 1px);background-size:28px 28px;animation:heroBgIn 1.2s ease-out .1s both}
   @keyframes heroBgIn{from{opacity:0}to{opacity:1}}
-  html.dark .hero{background-image:radial-gradient(circle,rgba(74,222,128,.055) 1px,transparent 1px);background-size:28px 28px}
+  .hero{animation:heroBgIn .8s ease-out .1s both}
+  html.dark .hero{background:url(bg-hero.jpg) center 60% / cover no-repeat}
+  html.dark .hero::before{background:linear-gradient(105deg,rgba(11,26,18,.97) 0%,rgba(11,26,18,.92) 26%,rgba(11,26,18,.55) 50%,rgba(11,26,18,.12) 68%,transparent 82%)}
 
   /* ── Hero copy editorial accent line ── */
   .hero-copy{position:relative;padding-left:26px}
@@ -606,8 +613,6 @@
   @keyframes scrollDrop{0%{transform:translateY(-100%)}50%{transform:translateY(0%)}100%{transform:translateY(100%)}}
 
   @media(max-width:980px){
-    .hero-copy{padding-left:0}
-    .hero-copy::before{display:none}
     .hero-scroll-hint{display:none}
   }
 </style>
@@ -684,35 +689,41 @@
 
 <!-- ═══ HERO ═══ -->
 <section class="hero" id="top">
-  <div class="wrap hero-grid">
+  <div class="wrap hero-centered">
     <div class="hero-copy">
       <div class="eyebrow">
         <span class="pulse" aria-hidden="true"></span>
         <span class="mono">Diseño web · Marcos Paz · Todo el país</span>
       </div>
       <h1 class="hero-title">
-        Sin web, el boca a boca<br/>llega hasta la <span class="it">esquina</span>.<br/>Con una buena página,<br/>llega a todo el <span class="leaf-word">país</span>.
+        ¿Listo para plantar la <span class="it">semilla</span><br/>que haga crecer tu <span class="leaf-word">emprendimiento</span>?
       </h1>
       <p class="hero-sub">
-        Hacemos páginas web para negocios reales — locales, restaurantes, emprendimientos — que quieren que los encuentren, los llamen y les compren. Sin vueltas, sin letra chica.
+        En origen IA potenciamos tu negocio con una página acorde a tu estilo, tu historia y tus gustos. Contactanos y lo hacemos realidad.
       </p>
       <div class="hero-actions">
         <a href="https://wa.me/541161436720?text=Hola%2C+quiero+una+p%C3%A1gina+web+para+mi+negocio" target="_blank" rel="noopener" class="btn">Quiero mi página <span class="arrow">→</span></a>
         <a href="#servicios" class="btn-ghost btn-ornate">Ver precios</a>
       </div>
       <div class="hero-meta">
-        <div class="item"><div class="n">7<span style="color:var(--leaf)">d</span></div><div class="l">Entrega plan Semilla</div></div>
-        <div class="item"><div class="n">100%</div><div class="l">Diseño a medida</div></div>
-        <div class="item"><div class="n">AR<span style="color:var(--leaf)">G</span></div><div class="l">Todo el país</div></div>
+        <div class="item">
+          <div class="n">7<span style="color:var(--leaf)">d</span></div>
+          <div class="l">Semilla</div>
+        </div>
+        <div class="item">
+          <div class="n">14<span style="color:var(--leaf)">d</span></div>
+          <div class="l">Raíz</div>
+        </div>
+        <div class="item">
+          <div class="n">21<span style="color:var(--leaf)">d</span></div>
+          <div class="l">Árbol</div>
+        </div>
       </div>
     </div>
-    <div class="hero-art" aria-hidden="true">
-      <canvas id="hero-canvas" aria-hidden="true"></canvas>
-      <div class="ring"></div>
-      <div class="glow"></div>
-      <div class="dial"></div>
-      <div class="dial-2"></div>
-      <svg class="tree-svg" viewBox="0 0 240 248" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <div class="hero-visual" aria-hidden="true">
+      <img src="origen-logo.png" alt="" class="hero-logo-img" width="360" height="360" />
+    </div>
+    <div style="display:none"><svg viewBox="0 0 1 1">
         <defs>
           <linearGradient id="ringGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#2E8B57"/><stop offset="100%" stop-color="#2C8B85"/>
@@ -815,10 +826,7 @@
         <path class="lf lf-c1" d="M100,57 Q116,68 100,83 Q84,68 100,57 Z"  fill="#4ade80" opacity="0.90" transform="rotate(-10 100 70)"/>
         <path class="lf lf-c2" d="M130,55 Q146,66 130,81 Q114,66 130,55 Z" fill="#3da85e" opacity="0.86" transform="rotate(10 130 68)"/>
         <path class="lf lf-c5" d="M118,50 Q130,60 118,74 Q106,60 118,50 Z" fill="#4ade80" opacity="0.80" transform="rotate(6 118 62)"/>
-        <path class="lf lf-c3" d="M114,34 Q130,46 114,61 Q98,46 114,34 Z"  fill="#4ade80" opacity="0.94"/>
-        <path class="lf lf-c4" d="M114,20 Q128,31 114,45 Q100,31 114,20 Z" fill="#4ade80" opacity="0.76"/>
-      </svg>
-    </div>
+      </svg></div>
   </div>
   <div class="hero-scroll-hint" aria-hidden="true">
     <span>Scroll</span>
@@ -835,7 +843,7 @@
       <div class="lg">De dónde<br/>venimos.</div>
     </div>
     <div class="mani-body reveal">
-      El 70% de los negocios de barrio no tienen página web. Sus dueños confían en el boca en boca, en los carteles, en que los de siempre vuelvan. Y funciona — hasta que llega alguien nuevo con una web prolija y se lleva a tus clientes sin que te enteres. Nacimos en <span class="it">Marcos Paz</span>, la ciudad del árbol, para darle a cada negocio lo que se merece: una <span class="hl">presencia online que trabaja aunque vos no estés</span>.
+      <span class="it">Marcos Paz</span> tiene árboles. Nosotros, inteligencia artificial. A primera vista parecen mundos distintos — y eso es exactamente el punto. De esa contradicción nació origen.ia: una agencia que entiende que la tecnología no cancela lo local, lo multiplica. Porque cada negocio tiene una historia que merece ser encontrada. Nosotros la llevamos a internet, con <span class="hl">diseño a medida, estrategia digital y herramientas de IA al servicio de tu crecimiento</span>.
       <div class="mani-sig"><span>origen.ia — desde 2024 · Buenos Aires, Argentina</span></div>
     </div>
   </div>
@@ -847,7 +855,7 @@
     <div class="section-head">
       <div>
         <div class="mono" style="margin-bottom:18px">02 · Servicios</div>
-        <h2 class="reveal">Tres planes.<br/><span class="it">Un solo objetivo:</span> que te encuentren.</h2>
+        <h2 class="reveal">Tres planes,<br/><span class="it">ajustados a la experiencia</span> que deseás.</h2>
       </div>
       <p class="reveal">Precio cerrado antes de arrancar. Sin costos ocultos, sin sorpresas. Vos elegís el plan, nosotros nos encargamos del resto.</p>
     </div>
@@ -866,11 +874,13 @@
           <circle cx="42" cy="58" r="1.5" fill="currentColor"/>
         </svg>
         <h3>Semilla</h3>
-        <p>Para el que arranca o necesita salir del boca en boca. En 7 días tenés una página que trabaja de noche, los feriados y cuando estás atendiendo otro cliente.</p>
+        <span class="svc-who">Autónomos · Plomeros · Electricistas · Abogados · Pymes que arrancan</span>
         <ul>
-          <li>Diseño a medida (1 página)</li>
-          <li>Formulario de contacto</li>
-          <li>Adaptación mobile perfecta</li>
+          <li>Página a medida de tu rubro e historia</li>
+          <li>Muestra tus productos o servicios</li>
+          <li>Enlace directo a WhatsApp, Instagram y más</li>
+          <li>Análisis de métricas incluido</li>
+          <li>Adaptación mobile + carga rápida</li>
           <li>Entrega en 7 días hábiles</li>
         </ul>
         <div class="price"><span class="cur">$</span>150.000<span class="per">/ proyecto</span></div>
@@ -892,9 +902,11 @@
           <path d="M32 14 L 28 8 M 32 14 L 36 8 M 32 14 L 32 6"/>
         </svg>
         <h3>Raíz</h3>
-        <p>Para el que no quiere parecer más del montón. Animaciones, SEO y hasta 5 secciones a medida. El que entra a tu página entiende en 3 segundos que sos la mejor opción.</p>
+        <span class="svc-who">Gastronomía · Indumentaria · Pymes ambiciosas · Emprendimientos en crecimiento</span>
         <ul>
-          <li>Hasta 5 secciones a medida</li>
+          <li>Todo lo de Semilla, más presencia</li>
+          <li>Hasta 7 secciones personalizadas</li>
+          <li>Catálogo editable por vos mismo</li>
           <li>Animaciones y micro-interacciones</li>
           <li>SEO on-page + revisiones ilimitadas</li>
           <li>Entrega en 14 días hábiles</li>
@@ -920,11 +932,13 @@
           <circle cx="56" cy="50" r="1.5" fill="currentColor"/>
         </svg>
         <h3>Bosque</h3>
-        <p>Tu tienda online completa, lista para vender desde el día 1. Carrito, MercadoPago y panel para que vos mismo cargues los productos — sin depender de nadie.</p>
+        <span class="svc-who">Grandes emprendimientos · Marcas que invierten en imagen · E-commerce real</span>
         <ul>
-          <li>E-commerce completo</li>
-          <li>Pasarela de pagos MercadoPago</li>
+          <li>E-commerce completo con carrito</li>
+          <li>MercadoPago y medios de pago</li>
+          <li>Animaciones premium con video</li>
           <li>Panel de gestión de productos</li>
+          <li>Diseño de imagen de marca</li>
           <li>Entrega en 21 días hábiles</li>
         </ul>
         <div class="price"><span class="cur">$</span>500.000<span class="per">/ proyecto</span></div>
@@ -941,38 +955,38 @@
     <div class="section-head">
       <div>
         <div class="mono" style="margin-bottom:18px">03 · Proceso</div>
-        <h2 class="reveal">De la <span class="it">semilla</span><br/>al bosque, en cuatro estaciones.</h2>
+        <h2 class="reveal">De la idea,<br/><span class="it">a la página.</span></h2>
       </div>
-      <p class="reveal">Trabajamos como un vivero: con tiempos claros, etapas visibles y acompañamiento del primer brote a la cosecha.</p>
+      <p class="reveal">Diseñamos la demo antes de cobrar. Así sabés exactamente lo que estás comprando.</p>
     </div>
     <div class="proc-grid">
       <div class="proc-step reveal">
         <span class="dot" aria-hidden="true"></span>
-        <div class="stage">Estación 01</div>
+        <div class="stage">Paso 01</div>
         <div class="num" aria-hidden="true">01</div>
-        <h4>Sembrar</h4>
-        <p>Conversamos sobre tu marca, tu público y tus objetivos. Definimos contenido, secciones y referencias visuales. 3 a 5 días.</p>
+        <h4>La charla</h4>
+        <p>Una llamada o un mensaje por WhatsApp — lo que te sea más cómodo. Contanos tu negocio, tus objetivos, tus colores y referencias. Con eso ya tenemos todo para arrancar.</p>
       </div>
       <div class="proc-step reveal">
         <span class="dot" aria-hidden="true"></span>
-        <div class="stage">Estación 02</div>
+        <div class="stage">Paso 02</div>
         <div class="num" aria-hidden="true">02</div>
-        <h4>Enraizar</h4>
-        <p>Diseñamos la identidad digital: estructura, paleta, tipografía y el sistema visual completo. Te mostramos todo antes de tocar código.</p>
+        <h4>La demo</h4>
+        <p>A los pocos días te mostramos el sitio armado. Lo ves completo, sin apuros. Si te convence, ahí recién te pedimos el 50%. Si no es lo que esperabas, lo hablamos.</p>
       </div>
       <div class="proc-step reveal">
         <span class="dot" aria-hidden="true"></span>
-        <div class="stage">Estación 03</div>
+        <div class="stage">Paso 03</div>
         <div class="num" aria-hidden="true">03</div>
-        <h4>Ramificar</h4>
-        <p>Construimos tu sitio: rápido, accesible, optimizado para SEO y pensado para crecer. Revisás avances en todo momento.</p>
+        <h4>Los retoques</h4>
+        <p>Te entregamos el sitio y abrimos un período de ajuste. Cambiá lo que quieras: textos, fotos, colores, orden de secciones. Esta etapa existe para que quede exactamente como lo imaginaste.</p>
       </div>
       <div class="proc-step reveal">
         <span class="dot" aria-hidden="true"></span>
-        <div class="stage">Estación 04</div>
+        <div class="stage">Paso 04</div>
         <div class="num" aria-hidden="true">04</div>
-        <h4>Florecer</h4>
-        <p>Lanzamiento y soporte. Te explicamos todo lo que necesitás para manejarlo y volvemos cuando quieras agregar una nueva rama.</p>
+        <h4>Es tuyo</h4>
+        <p>Versión final con guía de uso para que lo manejes solo. Garantía de soporte ante cualquier falla técnica. Y si a futuro querés renovar el diseño o agregarle algo nuevo, acá seguimos.</p>
       </div>
     </div>
   </div>
@@ -989,122 +1003,63 @@
       <p class="reveal">Una muestra de proyectos reales. Cada uno con su personalidad, todos con la misma obsesión por el detalle.</p>
     </div>
 
-    <div class="work-grid">
-      <!-- Vértigo Vapes — main tall -->
-      <div class="work-wrap reveal">
-        <a class="work tall" href="https://vertigovapes.netlify.app" target="_blank" rel="noopener" aria-label="Ver sitio de Vértigo Vapes">
-          <img class="work-img" loading="lazy" width="900" height="1305" style="object-position:top"
-            src="screenshot-vertigo.jpg"
-            alt="Sitio web de Vértigo Vapes desarrollado por origen.ia" />
-          <div class="work-overlay" aria-hidden="true"></div>
-          <div class="meta">
-            <span class="t">Vértigo <span class="it">Vapes</span></span>
-            <span class="tag">Vapeadores</span>
+    <div class="proj-list">
+
+      <!-- 01 — Vértigo Vapes -->
+      <div class="proj-row reveal">
+        <span class="proj-num" aria-hidden="true">01</span>
+        <div class="proj-copy">
+          <span class="proj-rubro">Vapeadores</span>
+          <h3 class="proj-name">Vértigo <span class="it">Vapes</span></h3>
+          <p class="proj-result">Un rubro que necesita mostrar productos antes de que el cliente llegue. Ahora su catálogo está online las 24 horas y las consultas por WhatsApp llegan solas.</p>
+          <a href="https://vertigovapes.netlify.app" target="_blank" rel="noopener" class="proj-cta">Ver sitio <span class="proj-arr">→</span></a>
+        </div>
+        <a class="proj-browser" href="https://vertigovapes.netlify.app" target="_blank" rel="noopener" aria-label="Ver sitio de Vértigo Vapes">
+          <div class="browser-chrome" aria-hidden="true">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <span class="browser-url">vertigovapes.netlify.app</span>
+          </div>
+          <div class="browser-body">
+            <picture>
+              <source srcset="screenshot-vertigo.webp" type="image/webp" />
+              <img class="work-img" loading="lazy" width="900" height="675"
+                src="screenshot-vertigo.jpg"
+                alt="Sitio web de Vértigo Vapes desarrollado por origen.ia" />
+            </picture>
           </div>
         </a>
-        <div class="work-info">
-          <p class="result">Un rubro que necesita mostrar productos antes de que el cliente llegue. Ahora su catálogo está online las 24 horas y las consultas por WhatsApp llegan solas.</p>
-          <a href="https://vertigovapes.netlify.app" target="_blank" rel="noopener" class="see-site">Ver sitio <span class="arr">→</span></a>
-        </div>
       </div>
 
-      <!-- Right column -->
-      <div class="right-col" style="display:flex;flex-direction:column;gap:24px">
-        <!-- Pizzería del Amor — wide -->
-        <div class="work-wrap reveal">
-          <a class="work wide" href="https://pizzeriadelamor.netlify.app" target="_blank" rel="noopener" aria-label="Ver sitio de Pizzería del Amor">
-            <img class="work-img" loading="lazy" width="1280" height="720" style="object-position:top"
-              src="screenshot-pizzeria.jpg"
-              alt="Sitio web de Pizzería del Amor desarrollado por origen.ia" />
-            <div class="work-overlay" aria-hidden="true"></div>
-            <div class="meta">
-              <span class="t">Pizzería <span class="it">del Amor</span></span>
-              <span class="tag">Gastronomía</span>
-            </div>
-          </a>
-          <div class="work-info">
-            <p class="result">Menú online y botón de WhatsApp integrado. De vender solo a quienes ya los conocían a tener clientes nuevos que los encontraron online.</p>
-            <a href="https://pizzeriadelamor.netlify.app" target="_blank" rel="noopener" class="see-site">Ver sitio <span class="arr">→</span></a>
+      <!-- 02 — Pizzería del Amor -->
+      <div class="proj-row rev reveal">
+        <span class="proj-num" aria-hidden="true">02</span>
+        <div class="proj-copy">
+          <span class="proj-rubro">Gastronomía</span>
+          <h3 class="proj-name">Pizzería <span class="it">del Amor</span></h3>
+          <p class="proj-result">Menú online y botón de WhatsApp integrado. De vender solo a quienes ya los conocían a tener clientes nuevos que los encontraron online.</p>
+          <a href="https://pizzeriadelamor.netlify.app" target="_blank" rel="noopener" class="proj-cta">Ver sitio <span class="proj-arr">→</span></a>
+        </div>
+        <a class="proj-browser" href="https://pizzeriadelamor.netlify.app" target="_blank" rel="noopener" aria-label="Ver sitio de Pizzería del Amor">
+          <div class="browser-chrome" aria-hidden="true">
+            <div class="browser-dots"><span></span><span></span><span></span></div>
+            <span class="browser-url">pizzeriadelamor.netlify.app</span>
           </div>
-        </div>
-
-        <div class="row">
-          <a href="https://wa.me/541161436720?text=Hola%2C+quiero+info+sobre+la+Landing+Page" target="_blank" rel="noopener" class="work coming-soon reveal">
-            <div class="placeholder"></div>
-            <div class="cs-content">
-              <span class="cs-badge">Próximo proyecto</span>
-              <span class="cs-cta">Tu marca<br/><em>aquí</em></span>
-              <span class="cs-link">Sumar mi negocio <span>→</span></span>
-            </div>
-          </a>
-          <a href="https://wa.me/541161436720?text=Hola%2C+quiero+info+sobre+la+Landing+Page" target="_blank" rel="noopener" class="work coming-soon reveal">
-            <div class="placeholder"></div>
-            <div class="cs-content">
-              <span class="cs-badge">Próximo proyecto</span>
-              <span class="cs-cta">Tu marca<br/><em>aquí</em></span>
-              <span class="cs-link">Sumar mi negocio <span>→</span></span>
-            </div>
-          </a>
-        </div>
+          <div class="browser-body">
+            <picture>
+              <source srcset="screenshot-pizzeria.webp" type="image/webp" />
+              <img class="work-img" loading="lazy" width="1280" height="960"
+                src="screenshot-pizzeria.jpg"
+                alt="Sitio web de Pizzería del Amor desarrollado por origen.ia" />
+            </picture>
+          </div>
+        </a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- ═══ TESTIMONIOS ═══ -->
-<section class="testimonios" id="testimonios">
-  <div class="wrap">
-    <div class="section-head">
-      <div>
-        <div class="mono" style="margin-bottom:14px">04 · Testimonios</div>
-        <h2 class="reveal">Los primeros en<br/><span class="it">echar raíces</span>.</h2>
-      </div>
-    </div>
-    <div class="testi-grid">
-      <div class="testi-card reveal">
-        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="testi-quote">"Antes la gente me pedía el precio por Instagram y se perdía. Ahora entran a la web, ven todo el catálogo, eligen y me mandan un mensaje ya listos para comprar. El proceso cambió por completo."</p>
-        <div class="testi-author">
-          <div class="avatar">V</div>
-          <div>
-            <div class="name">Vértigo Vapes</div>
-            <div class="role">Distribuidores ELF BAR · Zona Oeste, Buenos Aires</div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-card reveal" style="transition-delay:.12s">
-        <div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-        <p class="testi-quote">"La carta online fue la mejor decisión que tomamos. La gente ya sabe qué pedir antes de llamar. Los pedidos a domicilio crecieron y perdemos menos tiempo explicando el menú por teléfono."</p>
-        <div class="testi-author">
-          <div class="avatar">P</div>
-          <div>
-            <div class="name">Pizzería del Amor</div>
-            <div class="role">Gastronomía · Zona Oeste, Buenos Aires</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- ═══ STRIP / CTA ═══ -->
-<section class="strip">
-  <div class="wrap inner">
-    <div class="reveal">
-      <h3>Mientras leés esto, alguien busca<br/>lo que vos vendés. ¿Aparecés<br/><span class="it">o aparece la competencia?</span></h3>
-      <p>Tomamos pocos proyectos por mes para cuidar la calidad de cada uno. Escribinos hoy y te decimos si hay lugar este mes.</p>
-      <div style="margin-top:32px">
-        <a href="https://wa.me/541161436720?text=Hola%2C+quiero+saber+si+tienen+lugar+este+mes" target="_blank" rel="noopener" class="btn btn-light">Consultar disponibilidad <span class="arrow">→</span></a>
-      </div>
-    </div>
-    <div class="quick reveal">
-      <div class="q"><span class="k">Tiempo de respuesta</span><span class="v">&lt; 24h</span></div>
-      <div class="q"><span class="k">Entrega Semilla</span><span class="v">7 días</span></div>
-      <div class="q"><span class="k">Anticipo</span><span class="v">50%</span></div>
-      <div class="q"><span class="k">Zona</span><span class="v">Todo el país</span></div>
-    </div>
-  </div>
-</section>
 
 <!-- ═══ FAQ ═══ -->
 <section class="faq" id="faq">
@@ -1130,7 +1085,7 @@
         </div>
         <div class="faq-item">
           <div class="faq-q"><span>¿Trabajan con cuotas o planes de pago?</span><span class="plus" aria-hidden="true">+</span></div>
-          <div class="faq-a">Sí. Trabajamos con 50% de anticipo y 50% a la entrega. En proyectos grandes podemos acordar un plan en 3 cuotas.</div>
+          <div class="faq-a">Sí. Trabajamos con 50% de anticipo y 50% a la entrega.</div>
         </div>
         <div class="faq-item">
           <div class="faq-q"><span>¿Necesito saber de tecnología para manejar mi web?</span><span class="plus" aria-hidden="true">+</span></div>
@@ -1155,20 +1110,24 @@
     <div class="contact-grid">
       <div class="contact-aside">
         <div class="mono" style="margin-bottom:18px">06 · Contacto</div>
+        <div class="contact-badge reveal">
+          <span class="contact-badge-dot"></span>
+          Recibimos consultas — respondemos hoy
+        </div>
         <h3 class="reveal">Contanos qué<br/>querés <span class="it">plantar</span>.</h3>
-        <p class="reveal">Completá el formulario y te respondemos por WhatsApp en menos de 24 hs con los próximos pasos.</p>
+        <p class="reveal">Completá el formulario y te respondemos en menos de 24 hs. Si preferís hablar directo, escribinos por WhatsApp.</p>
         <div class="info">
           <div class="row">
             <span class="k">WhatsApp</span>
-            <span class="v">
-              <a href="https://wa.me/541161436720" target="_blank" rel="noopener" style="color:var(--ink)">+54 9 11 6143-6720</a>
-            </span>
+            <span class="v"><a href="https://wa.me/541161436720" target="_blank" rel="noopener" style="color:var(--ink)">+54 9 11 6143-6720</a></span>
           </div>
           <div class="row">
             <span class="k">Instagram</span>
-            <span class="v">
-              <a href="https://instagram.com/origenn.ia" target="_blank" rel="noopener" style="color:var(--ink)">@origenn.ia</a>
-            </span>
+            <span class="v"><a href="https://instagram.com/origenn.ia" target="_blank" rel="noopener" style="color:var(--ink)">@origenn.ia</a></span>
+          </div>
+          <div class="row">
+            <span class="k">Email</span>
+            <span class="v"><a href="mailto:origenagenciaia@gmail.com" style="color:var(--ink)">origenagenciaia@gmail.com</a></span>
           </div>
           <div class="row">
             <span class="k">Estudio</span>
@@ -1179,40 +1138,63 @@
             <span class="v">Lun a Sáb · 9 a 20h</span>
           </div>
         </div>
+        <a href="https://wa.me/541161436720?text=Hola%2C+quiero+una+p%C3%A1gina+web+para+mi+negocio" target="_blank" rel="noopener" class="contact-wa-btn">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+          Escribir por WhatsApp
+        </a>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" name="contacto" data-netlify="true" novalidate>
-        <input type="hidden" name="form-name" value="contacto" />
+      <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/origenagenciaia@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Nuevo cliente — origen.ia" />
+        <input type="hidden" name="_next" value="https://origenia.netlify.app/#contacto" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="plan" id="cf-plan" value="Raíz" />
         <div class="field-row">
           <div class="field">
-            <label for="cf-nombre">Nombre</label>
-            <input id="cf-nombre" name="nombre" type="text" placeholder="Cómo te llamás" required />
+            <label for="cf-nombre">Nombre *</label>
+            <input id="cf-nombre" name="nombre" type="text" placeholder="¿Cómo te llamás?" required />
           </div>
           <div class="field">
-            <label for="cf-telefono">Tu WhatsApp</label>
-            <input id="cf-telefono" name="telefono" type="tel" placeholder="Ej: 11 4567-8901" required />
+            <label for="cf-email">Email personal o de la empresa *</label>
+            <input id="cf-email" name="email" type="email" placeholder="tu@gmail.com o contacto@tuempresa.com" required />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="cf-telefono">WhatsApp *</label>
+            <input id="cf-telefono" name="whatsapp" type="tel" placeholder="Ej: 11 4567-8901" required />
+          </div>
+          <div class="field">
+            <label for="cf-redes">Instagram / TikTok / Red social</label>
+            <input id="cf-redes" name="redes" type="text" placeholder="@tunegocio" />
           </div>
         </div>
         <div class="field">
-          <label>¿Qué tipo de proyecto?</label>
+          <label for="cf-rubro">Rubro del emprendimiento *</label>
+          <input id="cf-rubro" name="rubro" type="text" placeholder="Ej: Panadería, Estudio contable, Indumentaria…" required />
+        </div>
+        <div class="field">
+          <label>Plan de interés</label>
           <div class="chips" id="chips">
             <span class="chip" data-v="Semilla">Semilla</span>
             <span class="chip on" data-v="Raíz">Raíz</span>
             <span class="chip" data-v="Bosque">Bosque</span>
-            <span class="chip" data-v="otro">Aún no lo sé</span>
+            <span class="chip" data-v="No lo sé aún">No lo sé aún</span>
           </div>
+          <input type="hidden" name="plan" id="cf-plan" value="Raíz" />
         </div>
         <div class="field">
-          <label for="cf-msg">Contanos un poco</label>
-          <textarea id="cf-msg" name="mensaje" placeholder="Sobre tu marca, lo que necesitás, plazos, referencias…"></textarea>
+          <label for="cf-msg">Contanos tu proyecto <span style="color:var(--muted);font-size:10px">(opcional)</span></label>
+          <textarea id="cf-msg" name="mensaje" placeholder="Qué necesitás, referencias de estilo, plazos…"></textarea>
         </div>
         <div>
-          <button type="submit" class="btn" id="cf-submit" style="width:100%;justify-content:center">Enviar por WhatsApp <span class="arrow">→</span></button>
+          <button type="submit" class="btn" id="cf-submit" style="width:100%;justify-content:center">Enviar consulta <span class="arrow">→</span></button>
         </div>
+        <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:4px">Te respondemos en menos de 24 horas · Sin compromiso</p>
         <div id="cf-success" style="display:none;padding:20px;background:rgba(46,139,87,.1);border:1px solid var(--leaf);border-radius:2px;text-align:center">
-          <p style="font-family:var(--serif);font-size:20px;color:var(--leaf);margin-bottom:8px">¡Mensaje enviado!</p>
-          <p style="font-size:14px;color:var(--ink-soft)">Te abrimos WhatsApp para seguir la conversación. Si no se abrió, escribinos al <a href="https://wa.me/541161436720" target="_blank" rel="noopener" style="color:var(--leaf)">+54 11 6143-6720</a>.</p>
+          <p style="font-family:var(--serif);font-size:20px;color:var(--leaf);margin-bottom:8px">¡Consulta enviada!</p>
+          <p style="font-size:14px;color:var(--ink-soft)">Recibimos tu mensaje y te respondemos antes de las 24 horas. Si necesitás respuesta urgente, escribinos por <a href="https://wa.me/541161436720" target="_blank" rel="noopener" style="color:var(--leaf)">WhatsApp</a>.</p>
         </div>
       </form>
     </div>
@@ -1236,7 +1218,6 @@
           <a href="#manifiesto">Manifiesto</a>
           <a href="#proceso">Proceso</a>
           <a href="#trabajos">Trabajos</a>
-          <a href="#testimonios">Testimonios</a>
         </div>
         <div class="foot-col">
           <h5>Servicios</h5>
@@ -1278,47 +1259,11 @@
     });
   });
 
-  // ── Contact form → Netlify + WhatsApp ──
-  document.getElementById('contactForm').addEventListener('submit', async e => {
-    e.preventDefault();
-    const nombre = document.getElementById('cf-nombre').value.trim();
-    const tel    = document.getElementById('cf-telefono').value.trim();
-    const plan   = document.querySelector('#chips .chip.on')?.dataset.v || 'Sin definir';
-    const msg    = document.getElementById('cf-msg').value.trim();
-    if (!nombre || !tel) {
-      document.getElementById('cf-nombre').focus();
-      return;
-    }
-    const btn = document.getElementById('cf-submit');
-    btn.disabled = true;
-    btn.textContent = 'Enviando…';
 
-    // 1. Enviar a Netlify
-    try {
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(new FormData(e.target)).toString()
-      });
-    } catch(_) {}
-
-    // 2. Evento GA4
-    if (typeof gtag !== 'undefined') {
-      gtag('event', 'form_submit', { plan, nombre });
-    }
-
-    // 3. Abrir WhatsApp
-    const text = encodeURIComponent(
-      `Hola, soy ${nombre}. Mi WhatsApp es ${tel}. Me interesa el plan ${plan}.${msg ? ' ' + msg : ''}`
-    );
-    window.open(`https://wa.me/541161436720?text=${text}`, '_blank', 'noopener');
-
-    // 4. Mostrar éxito
-    e.target.querySelector('.field-row, .field, .chips, textarea, #cf-submit').closest('form');
-    document.getElementById('cf-success').style.display = 'block';
-    btn.style.display = 'none';
-    e.target.reset();
-    document.getElementById('cf-plan').value = 'Raíz';
+  // ── GA4 al enviar formulario ──
+  document.getElementById('contactForm').addEventListener('submit', () => {
+    const plan = document.querySelector('#chips .chip.on')?.dataset.v || 'Sin definir';
+    if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { plan });
   });
 
   // ── Mobile hamburger ──
@@ -1364,12 +1309,6 @@
   }, { threshold: 0.1, rootMargin: '0px 0px -32px 0px' });
   document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
-  // ── Work card: switch text color when real image is loaded ──
-  document.querySelectorAll('.work img.work-img').forEach(img => {
-    const card = img.closest('.work');
-    if (img.complete) { card.classList.add('work-img-loaded'); }
-    else { img.addEventListener('load', () => card.classList.add('work-img-loaded')); }
-  });
 
   // ── Scroll progress bar ──
   const scrollProg = document.getElementById('scroll-prog');
@@ -1626,26 +1565,38 @@
     faqObs.observe(faqList);
   })();
 
-  // ════ HERO STAT COUNTERS ════
-  function countUp(el, to, dur, fmt){
-    const t0=performance.now();
-    (function tick(now){
-      const t=Math.min((now-t0)/dur,1), ease=1-Math.pow(1-t,3);
-      fmt(el, Math.round(to*ease));
-      if(t<1) requestAnimationFrame(tick);
-    })(performance.now());
-  }
-  setTimeout(()=>{
-    const its = document.querySelectorAll('.hero-meta .item');
-    if(its[0]){ const n=its[0].querySelector('.n'),sp=n.querySelector('span');
-      const tn=document.createTextNode('+0'); n.innerHTML=''; n.appendChild(tn); if(sp)n.appendChild(sp.cloneNode(true));
-      countUp(n,20,1200,(el,v)=>{ el.firstChild.textContent='+'+v; }); }
-    if(its[1]){ const n=its[1].querySelector('.n'),sp=n.querySelector('span');
-      const tn=document.createTextNode('0'); n.innerHTML=''; n.appendChild(tn); if(sp)n.appendChild(sp.cloneNode(true));
-      countUp(n,14,1000,(el,v)=>{ el.firstChild.textContent=String(v); }); }
-    if(its[2]){ const n=its[2].querySelector('.n');
-      countUp(n,100,1400,(el,v)=>{ el.textContent=v+'%'; }); }
-  },750);
+  // ── Roots Glow ──
+  (function(){
+    function init(el){
+      el.classList.add('roots-glow');
+      el.addEventListener('pointermove',function(e){
+        const r=el.getBoundingClientRect();
+        const x=e.clientX-r.left,y=e.clientY-r.top;
+        const cx=r.width/2,cy=r.height/2;
+        const dx=x-cx,dy=y-cy;
+        const kx=dx?cx/Math.abs(dx):1e9;
+        const ky=dy?cy/Math.abs(dy):1e9;
+        const edge=Math.min(Math.max(1/Math.min(kx,ky),0),1);
+        let ang=Math.atan2(dy,dx)*(180/Math.PI)+90;
+        if(ang<0)ang+=360;
+        const t=Math.max(0,(edge-0.08)/0.92);
+        el.style.setProperty('--cursor-angle',ang.toFixed(1)+'deg');
+        el.style.setProperty('--rg-opacity',t.toFixed(3));
+        const rad=ang*Math.PI/180;
+        const ox=(Math.sin(rad)*10*t).toFixed(1);
+        const oy=(-Math.cos(rad)*10*t).toFixed(1);
+        el.style.boxShadow=t>0.02
+          ?`${ox}px ${oy}px ${(24*t).toFixed(0)}px rgba(46,139,87,${(t*.45).toFixed(2)}),0 0 ${(14*t).toFixed(0)}px rgba(44,139,133,${(t*.22).toFixed(2)})`
+          :'';
+      },{passive:true});
+      el.addEventListener('pointerleave',function(){
+        el.style.setProperty('--rg-opacity','0');
+        el.style.boxShadow='';
+      });
+    }
+    document.querySelectorAll('.svc').forEach(init);
+  })();
+
 </script>
 
 <a id="wa-fab" href="https://wa.me/541161436720?text=Hola%2C+quiero+una+p%C3%A1gina+web+para+mi+negocio" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
