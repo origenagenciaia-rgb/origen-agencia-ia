@@ -302,7 +302,7 @@
   .mani-sig::before{content:"";width:60px;height:1px;background:var(--line-strong)}
 
   /* ════════ SERVICIOS ════════ */
-  .servicios{padding:140px 0 120px;background:url(bg-servicios.png) center/cover no-repeat;position:relative}
+  .servicios{padding:140px 0 120px;background:url(bg-servicios.jpg) center/cover no-repeat;position:relative}
   .servicios::before{content:"";position:absolute;inset:0;background:rgba(8,20,12,.72);pointer-events:none}
   .servicios .wrap{position:relative;z-index:1}
   .servicios .section-head h2,.servicios .section-head p{color:var(--paper)}
@@ -462,13 +462,17 @@
     .proj-copy{order:2}
     .proj-browser{order:1}
     .proj-num{display:none}
-    .hero{padding:48px 0 80px}
-    .hero-centered{grid-template-columns:1fr;gap:32px;text-align:center}
+    .hero{padding:48px 0 72px}
+    .hero-centered{grid-template-columns:1fr;gap:24px;text-align:center}
     .hero-copy{max-width:unset;text-align:center;padding-left:0}
     .hero-copy::before{display:none}
-    .hero-visual{display:none}
+    .hero-visual{margin:8px auto 0;width:200px;height:200px}
+    .hero-logo-img{width:200px;height:200px}
+    .hero-visual::before{width:240px;height:240px}
     .hero-actions{justify-content:center}
     .hero-meta{justify-content:center;flex-wrap:wrap;gap:24px}
+    nav.top{padding:10px 12px 0}
+    .mobile-menu{top:82px;left:12px;right:12px}
     .mani-label{position:static}
     .proc-step{border-left:none;border-top:1px solid var(--line);padding-top:28px}
     .proc-step .dot{display:none}
@@ -1292,7 +1296,7 @@
         const target = document.querySelector(id);
         if (target) {
           e.preventDefault();
-          window.scrollTo({ top: target.offsetTop - 72, behavior: 'smooth' });
+          window.scrollTo({ top: target.offsetTop - 90, behavior: 'smooth' });
         }
       }
     });
