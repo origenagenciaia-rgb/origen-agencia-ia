@@ -620,7 +620,20 @@
     .hero-scroll-hint{display:none}
   }
 </style>
-<!-- Google Analytics — reemplazar G-EGSWZR769H con tu Measurement ID -->
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','27078366441775950');
+fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=27078366441775950&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EGSWZR769H"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -1239,7 +1252,7 @@
     </div>
     <div class="copyline">
       <span>&copy; 2026 origen.ia — Marcos Paz, Buenos Aires</span>
-      <span>Cultivado con código y hojas</span>
+      <span><a href="privacidad.html" style="color:var(--muted);text-decoration:none">Política de privacidad</a> &nbsp;·&nbsp; Cultivado con código y hojas</span>
     </div>
   </div>
 </footer>
@@ -1264,10 +1277,18 @@
   });
 
 
-  // ── GA4 al enviar formulario ──
+  // ── Eventos formulario y WhatsApp ──
   document.getElementById('contactForm').addEventListener('submit', () => {
     const plan = document.querySelector('#chips .chip.on')?.dataset.v || 'Sin definir';
     if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { plan });
+    if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: plan });
+  });
+
+  document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+    el.addEventListener('click', () => {
+      if (typeof fbq !== 'undefined') fbq('track', 'Contact');
+      if (typeof gtag !== 'undefined') gtag('event', 'whatsapp_click');
+    });
   });
 
   // ── Mobile hamburger ──
