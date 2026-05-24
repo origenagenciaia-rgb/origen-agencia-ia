@@ -1161,11 +1161,9 @@ fbq('track','PageView');
         </a>
       </div>
 
-      <form class="contact-form reveal" id="contactForm" action="https://formsubmit.co/origenagenciaia@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="Nuevo cliente — origen.ia" />
-        <input type="hidden" name="_next" value="https://origenia.netlify.app/#contacto" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
+      <form class="contact-form reveal" id="contactForm" name="contacto" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contacto" />
+        <input type="hidden" name="bot-field" style="display:none" />
         <input type="hidden" name="plan" id="cf-plan" value="Raíz" />
         <div class="field-row">
           <div class="field">
