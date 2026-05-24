@@ -1275,11 +1275,23 @@ fbq('track','PageView');
   });
 
 
-  // ── Eventos formulario y WhatsApp ──
-  document.getElementById('contactForm').addEventListener('submit', () => {
+  // ── Formulario AJAX → Netlify Forms ──
+  document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
     const plan = document.querySelector('#chips .chip.on')?.dataset.v || 'Sin definir';
-    if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { plan });
-    if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: plan });
+    try {
+      await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(this)).toString()
+      });
+      this.style.display = 'none';
+      document.getElementById('cf-success').style.display = 'block';
+      if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { plan });
+      if (typeof fbq !== 'undefined') fbq('track', 'Lead', { content_name: plan });
+    } catch(err) {
+      alert('Hubo un error al enviar. Escribinos por WhatsApp.');
+    }
   });
 
   document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
