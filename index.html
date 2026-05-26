@@ -283,15 +283,16 @@
 
   /* ════════ MANIFIESTO ════════ */
   .manifiesto{
-    background:var(--paper-2);padding:140px 0 160px;
+    background:url(bg-manifiesto.jpg) center/cover no-repeat;padding:140px 0 160px;
     border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    position:relative;
   }
   .manifiesto::before{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background-image:
-      radial-gradient(circle at 10% 30%,rgba(46,139,87,.05),transparent 30%),
-      radial-gradient(circle at 90% 70%,rgba(44,139,133,.05),transparent 30%);
+    background:rgba(242,239,227,.92);
   }
+  html.dark .manifiesto::before{background:rgba(11,26,18,.92)}
+  .manifiesto .wrap{position:relative;z-index:1}
   .mani-grid{display:grid;grid-template-columns:280px 1fr;gap:80px}
   .mani-label{position:sticky;top:120px;align-self:start}
   .mani-label .lg{font-family:var(--serif);font-size:34px;line-height:1.05;margin-top:16px}
